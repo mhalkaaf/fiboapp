@@ -27,7 +27,7 @@ services:
       - PG_USER=postgres
       - PG_HOST=postgres
       - PG_DATABASE=postgres
-      - PG_PASSWORD=postgres_password
+      - PG_PASSWORD=password
       - PG_PORT=5432
   client: 
     build:
