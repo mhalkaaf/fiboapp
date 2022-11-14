@@ -22,3 +22,5 @@ after_success:
   - docker push mhalkaaf/fibonginx
   - docker push mhalkaaf/fiboserver
   - docker push mhalkaaf/fiboworker
+
+  # add some comment
