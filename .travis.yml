@@ -1,0 +1,16 @@
+language: generic 
+sudo: required // use superuser account for execute
+services:
+  - docker // required dependency that must exist
+
+before_install: 
+  - docker build -t mhalkaaf/react-test -f ./client/Dockerfile . // specify build image name, dockerfile path, and location of build image in current working directory
+
+script: 
+  - docker run -e CI=true mhalkaaf/react-test npm test
+
+after_success: 
+  - docker build -t mhalkaaf/multi-client ./client
+  - docker build -t mhalkaaf/multi-nginx ./nginx 
+  - docker build -t mhalkaaf/multi-server ./server 
+  - docker build -t mhalkaaf/multi-worker ./worker

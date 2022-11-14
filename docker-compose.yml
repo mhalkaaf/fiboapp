@@ -3,25 +3,25 @@ services:
   postgres:
     image: 'postgres:latest'
     environment:
-      - POSTGRES_PASSWORD=postgres_password
+      - POSTGRES_PASSWORD=postgres_password // define password for postgres
   redis:
     image: 'redis:latest'
   nginx: 
     restart: always
-    depends_on:
-      - api
-      - client
+    depends_on: 
+      - api  
+      - client // nginx will build depends on api and client
     build:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - '2000:80'
+      - '2000:80' // expose in external port 2000 (local laptop) to port 80 internal nginx
   api:
     build: 
       dockerfile: Dockerfile.dev
       context: ./server
     volumes: 
-      - /app/node_modules
+      - /app/node_modules 
       - ./server:/app
     environment:
       - REDIS_HOST=redis
