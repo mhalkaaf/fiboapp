@@ -4,7 +4,7 @@ services:
   - docker // required dependency that must exist
 
 before_install: 
-  - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev . // specify build image name, dockerfile path, and location of build image in current working directory
+  - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev .
 
 script: 
   - docker run -e CI=true mhalkaaf/react-test npm test
