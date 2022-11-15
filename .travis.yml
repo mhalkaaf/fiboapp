@@ -23,3 +23,15 @@ after_success:
   - docker push mhalkaaf/fibonginx
   - docker push mhalkaaf/fiboserver
   - docker push mhalkaaf/fiboworker
+
+  deploy:
+    provider: elasticbeanstalk
+    region: 'us-east-1'
+    app: 'fiboapp'
+    env: 'Fiboapp-env'
+    bucket_name: 'elasticbeanstalk-us-east-1-101071463254'
+    bucket_path: 'fiboapp'
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
