@@ -1,7 +1,7 @@
-language: generic 
-sudo: required // use superuser account for execute
+language: generic
+sudo: required // required for superuser
 services:
-  - docker // required dependency that must exist
+  - docker
 
 before_install: 
   - docker build -t mhalkaaf/react-test -f ./client/Dockerfile.dev ./client
@@ -24,14 +24,14 @@ after_success:
   - docker push mhalkaaf/fiboserver
   - docker push mhalkaaf/fiboworker
 
-  deploy:
-    provider: elasticbeanstalk
-    region: 'us-east-1'
-    app: 'fiboapp'
-    env: 'Fiboapp-env'
-    bucket_name: 'elasticbeanstalk-us-east-1-101071463254'
-    bucket_path: 'fiboapp'
-    on:
-      branch: master
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "fiboapp"
+  env: "Fiboapp-env"
+  bucket_name: "elasticbeanstalk-us-east-1-101071463254"
+  bucket_path: "fiboapp"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
